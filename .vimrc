@@ -5,11 +5,11 @@ set nu rnu
 set exrc
 set secure
 set cursorline
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=8
+set tabstop=8
 set autoindent
 set smartindent
-set expandtab
+" set expandtab
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
@@ -38,4 +38,9 @@ augroup bindings_latex
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <leader>f :r ~/.vim/snippets/tex/formula_inl.tex<ESC>hi
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <leader>ff :r ~/.vim/snippets/tex/formula_ex.tex<ESC>hi
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <leader><F8> :! pdflatex -halt-on-error -file-line-error %<CR>
+augroup end
+
+augroup bindings_cmake
+    autocmd!
+    autocmd BufNewFile,BufRead CMakeLists.txt nnoremap <buffer> <leader>f :1,$d<CR>:0r! cmake-format % \| unexpand \| sponge <CR>
 augroup end
