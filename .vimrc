@@ -5,11 +5,11 @@ set nu rnu
 set exrc
 set secure
 set cursorline
-set shiftwidth=8
-set tabstop=8
+set shiftwidth=4
+set tabstop=4
 set autoindent
 set smartindent
-" set expandtab
+set expandtab
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
@@ -19,8 +19,24 @@ augroup templates
     autocmd BufNewFile *.tex 0r ~/.vim/templates/template.tex
 augroup end
 
+augroup bindings_cpp
+	autocmd!
+	autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format80
+augroup end
+
+augroup bindings_c
+	autocmd!
+	autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format80
+augroup end
+
+augroup bindings_cmake
+    autocmd!
+    autocmd BufNewFile,BufRead CMakeLists.txt,*.cmake setlocal equalprg="cmake-format | unexpand | sponge"
+augroup end
+
 augroup bindings_rust
     autocmd!
+	autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> <leader>df :r ~/.vim/snippets/rust/default.rs<CR>/T<CR>ciw
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> <leader>ds :r ~/.vim/snippets/rust/display.rs<CR>/T<CR>ciw
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> <leader>o :r ~/.vim/snippets/rust/ord.rs<CR>/T<CR>ciw
@@ -40,7 +56,3 @@ augroup bindings_latex
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <leader><F8> :! pdflatex -halt-on-error -file-line-error %<CR>
 augroup end
 
-augroup bindings_cmake
-    autocmd!
-    autocmd BufNewFile,BufRead CMakeLists.txt nnoremap <buffer> <leader>f :1,$d<CR>:0r! cmake-format % \| unexpand \| sponge <CR>
-augroup end
