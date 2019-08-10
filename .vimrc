@@ -23,12 +23,12 @@ augroup end
 
 augroup bindings_cpp
 	autocmd!
-	autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format80
+	autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format
 augroup end
 
 augroup bindings_c
 	autocmd!
-	autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format80
+	autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format
 augroup end
 
 augroup bindings_cmake
