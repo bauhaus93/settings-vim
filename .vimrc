@@ -29,11 +29,12 @@ augroup end
 augroup bindings_c
 	autocmd!
 	autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format
+    autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
 augroup end
 
 augroup bindings_cmake
     autocmd!
-    autocmd BufNewFile,BufRead CMakeLists.txt,*.cmake setlocal equalprg="cmake-format | unexpand | sponge"
+    autocmd BufNewFile,BufRead CMakeLists.txt,*.cmake setlocal equalprg=cmake-format\ -\ \|\ unexpand\ \|\ sponge
 augroup end
 
 augroup bindings_rust
