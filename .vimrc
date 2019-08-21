@@ -10,6 +10,7 @@ set tabstop=4
 set autoindent
 set smartindent
 set expandtab
+set path=**/**
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
@@ -23,13 +24,14 @@ augroup end
 
 augroup bindings_cpp
 	autocmd!
-	autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format
+	autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format\ -style=file
 augroup end
 
 augroup bindings_c
 	autocmd!
-	autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format
+	autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format\ -style=file
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
+    autocmd BufNewFile,BufRead *.h nnoremap <buffer> \extern :r ~/.vim/snippets/c/extern_c.c<CR>
 augroup end
 
 augroup bindings_cmake
