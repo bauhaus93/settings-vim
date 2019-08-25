@@ -15,7 +15,7 @@ let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 
-nnoremap <leader>f magg=G'ak<CR>
+nnoremap <leader>f m'gg=G''k<CR>
 
 augroup templates
     autocmd!
