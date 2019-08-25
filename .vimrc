@@ -15,7 +15,7 @@ let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 
-nnoremap <leader>f gg=G<CR>
+nnoremap <leader>f magg=G'ak<CR>
 
 augroup templates
     autocmd!
@@ -23,13 +23,13 @@ augroup templates
 augroup end
 
 augroup bindings_cpp
-	autocmd!
-	autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format\ -style=file
+    autocmd!
+    autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format\ -style=file
 augroup end
 
 augroup bindings_c
-	autocmd!
-	autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format\ -style=file
+    autocmd!
+    autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format\ -style=file
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> \extern :r ~/.vim/snippets/c/extern_c.c<CR>
 augroup end
@@ -40,8 +40,8 @@ augroup bindings_cmake
 augroup end
 
 augroup bindings_rust
-    autocmd!
-	autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
+autocmd!
+    autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> <leader>c :! cargo check<CR>
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \default :r ~/.vim/snippets/rust/default.rs<CR>/T<CR>ciw
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \display :r ~/.vim/snippets/rust/display.rs<CR>/T<CR>ciw
