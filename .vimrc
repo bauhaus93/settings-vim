@@ -11,11 +11,14 @@ set autoindent
 set smartindent
 set expandtab
 set path=**/**
+set wildignore+=**/build/**
+set clipboard=unnamedplus
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 
 nnoremap <leader>f m'gg=G''k<CR>
+nnoremap <leader>a :s/_\([a-su-z]\)/\U\1/g<CR>
 
 augroup templates
     autocmd!
@@ -32,6 +35,7 @@ augroup bindings_c
     autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format\ -style=file
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> \extern :r ~/.vim/snippets/c/extern_c.c<CR>
+    autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \doc :r ~/.vim/snippets/c/doc_header.c<CR>
 augroup end
 
 augroup bindings_cmake
