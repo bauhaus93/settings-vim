@@ -1,4 +1,4 @@
 #!/bin/sh
 cp ~/.vimrc ./.vimrc
-cp -R ~/.vim/snippets/ snippets
-cp -R ~/.vim/templates/ templates
+cp -r ~/.vim/snippets/ .
+cp -r ~/.vim/templates/ .

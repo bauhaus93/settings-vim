@@ -5,11 +5,11 @@ set nu rnu
 set exrc
 set secure
 set cursorline
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=8
+set tabstop=8
 set autoindent
 set smartindent
-set expandtab
+set noexpandtab
 set path=**/**
 set wildignore+=**/build/**
 set clipboard=unnamedplus
