@@ -19,6 +19,8 @@ let g:netrw_banner=0
 
 nnoremap <leader>f m'gg=G''k<CR>
 nnoremap <leader>a :s/_\([a-su-z]\)/\U\1/g<CR>
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>m :bprevious<CR>
 
 augroup templates
     autocmd!
