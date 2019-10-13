@@ -5,11 +5,11 @@ set nu rnu
 set exrc
 set secure
 set cursorline
-set shiftwidth=8
-set tabstop=8
+set shiftwidth=4
+set tabstop=4
 set autoindent
 set smartindent
-set noexpandtab
+set expandtab
 set path=**/**
 set wildignore+=**/build/**
 set clipboard=unnamedplus
@@ -36,6 +36,11 @@ augroup bindings_c
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> \extern :r ~/.vim/snippets/c/extern_c.c<CR>
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \doc :r ~/.vim/snippets/c/doc_header.c<CR>
+    autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>s :e %:r.h<CR>
+augroup end
+
+augroup bindings_c_header
+    autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>s :e %:r.c<CR>
 augroup end
 
 augroup bindings_cmake
