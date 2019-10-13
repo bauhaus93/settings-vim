@@ -21,6 +21,8 @@ nnoremap <leader>f m'gg=G''k<CR>
 nnoremap <leader>a :s/_\([a-su-z]\)/\U\1/g<CR>
 nnoremap <leader>n :bnext<CR>
 nnoremap <leader>m :bprevious<CR>
+nnoremap <leader>o :only<CR>
+nnoremap <leader>d :vspl %<CR>
 
 augroup templates
     autocmd!
