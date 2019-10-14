@@ -10,8 +10,10 @@ set tabstop=4
 set autoindent
 set smartindent
 set expandtab
+set autowrite
 set path=**/**
 set wildignore+=**/build/**
+set wildignore+=**/target/**
 set clipboard=unnamedplus
 let mapleader=","
 let g:netrw_liststyle=3
@@ -32,6 +34,14 @@ augroup end
 augroup bindings_cpp
     autocmd!
     autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format\ -style=file
+    autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
+    autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>v :vspl %:r.hpp<CR>
+augroup end
+
+augroup bindings_hpp
+    autocmd!
+    autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
+    autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>v :vspl %:r.cpp<CR>
 augroup end
 
 augroup bindings_c
@@ -44,7 +54,7 @@ augroup bindings_c
     autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>v :vspl %:r.h<CR>
 augroup end
 
-augroup bindings_c_header
+augroup bindings_h
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>s :e %:r.c<CR>
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>v :vspl %:r.c<CR>
 augroup end
