@@ -24,6 +24,12 @@ nnoremap <leader>m :bprevious<CR>
 nnoremap <leader>o :only<CR>
 nnoremap <leader>d :vspl %<CR>
 
+augroup group_all
+    autocmd!
+    autocmd BufWinLeave *.* mkview
+    autocmd BufWinEnter *.* silent loadview
+augroup end
+
 augroup templates
     autocmd!
     autocmd BufNewFile *.tex 0r ~/.vim/templates/template.tex
