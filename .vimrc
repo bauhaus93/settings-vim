@@ -10,11 +10,11 @@ set tabstop=4
 set autoindent
 set smartindent
 set expandtab
-set autowrite
 set path=**/**
 set wildignore+=**/build/**
-set wildignore+=**/target/**
 set clipboard=unnamedplus
+set ssop-=options
+set ssop-=folds
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
@@ -26,10 +26,22 @@ nnoremap <leader>m :bprevious<CR>
 nnoremap <leader>o :only<CR>
 nnoremap <leader>d :vspl %<CR>
 
+" folds
+nnoremap <leader>z zfa}<CR>
+
+" tabs
+nnoremap <leader>tn :tabedit<CR>
+nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>tt :tabn<CR>
+
+" session
+nnoremap <leader>ss :mksession .session.vim<CR>
+nnoremap <leader>sl :source .session.vim<CR>
+
 augroup group_all
     autocmd!
-    autocmd BufWinLeave *.* mkview
-    autocmd BufWinEnter *.* silent loadview
+    " autocmd BufWinLeave *.* mkview
+    " autocmd BufWinEnter *.* silent loadview
 augroup end
 
 augroup templates
@@ -40,14 +52,6 @@ augroup end
 augroup bindings_cpp
     autocmd!
     autocmd BufNewFile,BufRead *.hpp,*.cpp setlocal equalprg=clang-format\ -style=file
-    autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
-    autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>v :vspl %:r.hpp<CR>
-augroup end
-
-augroup bindings_hpp
-    autocmd!
-    autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
-    autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>v :vspl %:r.cpp<CR>
 augroup end
 
 augroup bindings_c
@@ -60,7 +64,7 @@ augroup bindings_c
     autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>v :vspl %:r.h<CR>
 augroup end
 
-augroup bindings_h
+augroup bindings_c_header
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>s :e %:r.c<CR>
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>v :vspl %:r.c<CR>
 augroup end
