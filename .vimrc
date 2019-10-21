@@ -30,9 +30,7 @@ nnoremap <leader>d :vspl %<CR>
 nnoremap <leader>z zfa}<CR>
 
 " tabs
-nnoremap <leader>tn :tabedit<CR>
-nnoremap <leader>tc :tabclose<CR>
-nnoremap <leader>tt :tabn<CR>
+nnoremap <leader>t :tabn<CR>
 
 " session
 nnoremap <leader>ss :mksession! .session.vim<CR>
