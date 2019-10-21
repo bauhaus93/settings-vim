@@ -11,7 +11,10 @@ set autoindent
 set smartindent
 set expandtab
 set path=**/**
+set path+=**
 set wildignore+=**/build/**
+set wildignore+=**/env/**
+set wildignore+=**/__pycache__/**
 set clipboard=unnamedplus
 set ssop-=options
 set ssop-=folds
