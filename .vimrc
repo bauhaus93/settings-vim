@@ -35,7 +35,7 @@ nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>tt :tabn<CR>
 
 " session
-nnoremap <leader>ss :mksession .session.vim<CR>
+nnoremap <leader>ss :mksession! .session.vim<CR>
 nnoremap <leader>sl :source .session.vim<CR>
 
 augroup group_all
