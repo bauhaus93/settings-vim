@@ -9,7 +9,7 @@ set shiftwidth=4
 set tabstop=4
 set autoindent
 set smartindent
-set expandtab
+set noexpandtab
 set path=**/**
 set path+=**
 set wildignore+=**/build/**
@@ -43,11 +43,6 @@ augroup group_all
     autocmd!
     " autocmd BufWinLeave *.* mkview
     " autocmd BufWinEnter *.* silent loadview
-augroup end
-
-augroup templates
-    autocmd!
-    autocmd BufNewFile *.tex 0r ~/.vim/templates/template.tex
 augroup end
 
 augroup bindings_cpp
@@ -88,6 +83,7 @@ augroup end
 
 augroup bindings_latex
     autocmd!
+    autocmd BufNewFile,BufRead thesis.tex,references.bib nnoremap <buffer> <leader>c :! ./build.sh<CR>
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <leader>b :! pdflatex -halt-on-error -file-line-error %<CR>
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> \itemize :r ~/.vim/snippets/tex/itemize.tex<CR>jA
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> \sec :r ~/.vim/snippets/tex/sec.tex<ESC>ci}
