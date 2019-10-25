@@ -5,8 +5,8 @@ set nu rnu
 set exrc
 set secure
 set cursorline
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=8
+set tabstop=8
 set autoindent
 set smartindent
 set noexpandtab
@@ -55,7 +55,8 @@ augroup bindings_c
     autocmd BufNewFile,BufRead *.h,*.c setlocal equalprg=clang-format\ -style=file
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
     autocmd BufNewFile,BufRead *.h nnoremap <buffer> \extern :r ~/.vim/snippets/c/extern_c.c<CR>
-    autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \doc :r ~/.vim/snippets/c/doc_header.c<CR>
+    autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \doc :r ~/.vim/snippets/c/doc_file.c<CR>
+    autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \fdoc :r ~/.vim/snippets/c/doc_func.c<CR>
     autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>s :e %:r.h<CR>
     autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>v :vspl %:r.h<CR>
 augroup end
@@ -85,9 +86,5 @@ augroup bindings_latex
     autocmd!
     autocmd BufNewFile,BufRead thesis.tex,references.bib nnoremap <buffer> <leader>c :! ./build.sh<CR>
     autocmd BufNewFile,BufRead *.tex nnoremap <buffer> <leader>b :! pdflatex -halt-on-error -file-line-error %<CR>
-    autocmd BufNewFile,BufRead *.tex nnoremap <buffer> \itemize :r ~/.vim/snippets/tex/itemize.tex<CR>jA
-    autocmd BufNewFile,BufRead *.tex nnoremap <buffer> \sec :r ~/.vim/snippets/tex/sec.tex<ESC>ci}
-    autocmd BufNewFile,BufRead *.tex nnoremap <buffer> \ssec :r ~/.vim/snippets/tex/ssec.tex<ESC>ci}
-    autocmd BufNewFile,BufRead *.tex nnoremap <buffer> \sssec :r ~/.vim/snippets/tex/sssec.tex<ESC>ci}
 augroup end
 
