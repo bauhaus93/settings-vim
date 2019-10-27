@@ -36,8 +36,8 @@ nnoremap <leader>z zfa}<CR>
 nnoremap <leader>t :tabn<CR>
 
 " session
-nnoremap <leader>ss :mksession! .session.vim<CR>
-nnoremap <leader>sl :source .session.vim<CR>
+nnoremap <leader>ws :mksession! .session.vim<CR>
+nnoremap <leader>wl :source .session.vim<CR>
 
 augroup group_all
     autocmd!
