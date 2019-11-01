@@ -1,3 +1,4 @@
 #!/bin/sh
 cp .vimrc ~/.vimrc
-cp -R snippets/ ~/.vim/snippets
+cp -r snippets/ ~/.vim/snippets
+cp plugin/ ~/.vim/plugin
