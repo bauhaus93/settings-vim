@@ -41,8 +41,7 @@ function! RunCmd()
 			else
 				:! source env/bin/activate && ./%
 			endif
-		endif
-		if !empty(glob("main.py"))
+		elseif !empty(glob("main.py"))
 			:! ./main.py
 		else
 			:! ./%

@@ -31,6 +31,9 @@ nnoremap <leader>o :only<CR>
 nnoremap <leader>d :vspl %<CR>
 nnoremap <leader>ym yyma<CR>
 
+nnoremap <C-j> 50jzz
+nnoremap <C-k> 50kzz
+
 
 " folds
 nnoremap <leader>z zfa}<CR>
@@ -44,7 +47,7 @@ nnoremap <leader>wl :source .session.vim<CR>
 
 " building
 nnoremap <leader>b :make<CR><CR>:ccl<CR>:cl<CR>
-nnoremap <leader>r :execute RunCmd()<CR>
+nnoremap <leader>r ma :execute RunCmd()<CR>
 
 augroup group_all
     autocmd!
