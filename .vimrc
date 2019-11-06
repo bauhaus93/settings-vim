@@ -5,8 +5,8 @@ set nu rnu
 set exrc
 set secure
 set cursorline
-set shiftwidth=8
-set tabstop=8
+set shiftwidth=4
+set tabstop=4
 set autoindent
 set smartindent
 set noexpandtab
@@ -34,7 +34,6 @@ nnoremap <leader>ym yyma<CR>
 nnoremap <C-j> 50jzz
 nnoremap <C-k> 50kzz
 
-
 " folds
 nnoremap <leader>z zfa}<CR>
 
@@ -46,13 +45,14 @@ nnoremap <leader>ws :mksession! .session.vim<CR>
 nnoremap <leader>wl :source .session.vim<CR>
 
 " building
-nnoremap <leader>b :make<CR><CR>:ccl<CR>:cl<CR>
+nnoremap <leader>b :make<CR>
 nnoremap <leader>r ma :execute RunCmd()<CR>
 
 augroup group_all
     autocmd!
     autocmd BufNewFile,BufRead *.* let &l:makeprg = GetBuildCmd()
 augroup end
+
 
 augroup bindings_cpp
     autocmd!
@@ -93,4 +93,16 @@ autocmd!
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \ord :r ~/.vim/snippets/rust/ord.rs<CR>/T<CR>ciw
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \error :r ~/.vim/snippets/rust/error.rs<CR>/{<CR>o
     autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \fromerror :r ~/.vim/snippets/rust/from_error.rs<CR>f<ci<
+augroup end
+
+augroup bindings_elm
+	autocmd!
+	autocmd BufNewFile,BufRead *.elm set syntax=elm
+	autocmd BufNewFile,BufRead *.elm set expandtab
+    autocmd BufNewFile,BufRead *.elm setlocal equalprg=elm-format\ --stdin
+augroup end
+
+augroup bindings_yaml
+	autocmd!
+	autocmd BufNewFile,BufRead *.yml,*.yaml set expandtab
 augroup end
