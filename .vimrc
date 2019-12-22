@@ -11,8 +11,7 @@ set autoindent
 set smartindent
 set noexpandtab
 set autowrite
-set path=**/**
-set path+=**
+set path=**
 set wildignore+=**/__pycache__/**
 set wildignore+=**/build/**
 set wildignore+=**/env/**
@@ -20,6 +19,7 @@ set wildignore+=**/target/**
 set clipboard=unnamedplus
 set ssop-=options
 set ssop-=folds
+set laststatus=2
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
