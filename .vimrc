@@ -11,6 +11,7 @@ set autoindent
 set smartindent
 set noexpandtab
 set autowrite
+set laststatus=2
 set path=**/**
 set path+=**
 set wildignore+=**/__pycache__/**
@@ -23,6 +24,8 @@ set ssop-=folds
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_winsize=20
 
 nnoremap <leader>f m'gg=G''k<CR>
 nnoremap <leader>n :bnext<CR>
@@ -30,9 +33,11 @@ nnoremap <leader>m :bprevious<CR>
 nnoremap <leader>o :only<CR>
 nnoremap <leader>d :vspl %<CR>
 nnoremap <leader>ym yyma<CR>
+nnoremap <leader>q bi'<Esc>ea'<Esc>
 
 nnoremap <C-j> 50jzz
 nnoremap <C-k> 50kzz
+nnoremap <C-y> <C-a>
 
 " folds
 nnoremap <leader>z zfa}<CR>
@@ -105,4 +110,9 @@ augroup end
 augroup bindings_yaml
 	autocmd!
 	autocmd BufNewFile,BufRead *.yml,*.yaml set expandtab
+augroup end
+
+augroup bindings_tex
+	autocmd!
+	autocmd BufNewFile,BufRead *.tex nnoremap <leader>i i\begin{itemize}<Esc>yyplciwend<ESC>O<TAB>\item<Space>
 augroup end
