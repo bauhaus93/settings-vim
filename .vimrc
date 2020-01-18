@@ -32,12 +32,6 @@ let g:netrw_browse_split=4
 let g:netrw_winsize=20
 
 nnoremap <leader>f m'gg=G''k<CR>
-nnoremap <leader>n :bnext<CR>
-nnoremap <leader>m :bprevious<CR>
-nnoremap <leader>o :only<CR>
-nnoremap <leader>d :vspl %<CR>
-nnoremap <leader>ym yyma<CR>
-nnoremap <leader>q bi'<Esc>ea'<Esc>
 
 nnoremap <C-j> 50jzz
 nnoremap <C-k> 50kzz
