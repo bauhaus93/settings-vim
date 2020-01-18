@@ -46,3 +46,9 @@ function! RunCmd()
 		endif
 	endif
 endfunction
+
+function! GetGitBranch()
+	let cmd = "git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'"
+	let branch = system(cmd)
+	return '[' . substitute(branch, "[^a-zA-Z0-9_-]", "", "") . ']'
+endfunction

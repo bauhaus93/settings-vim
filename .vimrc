@@ -24,6 +24,7 @@ set clipboard=unnamedplus
 set ssop-=options
 set ssop-=folds
 set laststatus=2
+set statusline=%(%F%m%r%)%{GetGitBranch()}%=[%l/%L]
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
