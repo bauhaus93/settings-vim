@@ -14,7 +14,7 @@ set noexpandtab
 set autowrite
 set laststatus=2
 set wildmenu
-set path=**/**
+set path=**/**3
 set path+=**
 set wildignore+=**/__pycache__/**
 set wildignore+=**/build/**
@@ -24,7 +24,7 @@ set clipboard=unnamedplus
 set ssop-=options
 set ssop-=folds
 set laststatus=2
-set statusline=%(%F%m%r%)%{GetGitBranch()}%=[%l/%L]
+set statusline=%(%t%m%r%)%{GetGitBranch()}%=[%l/%L]
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
@@ -36,6 +36,7 @@ nnoremap <leader>f m'gg=G''k<CR>
 nnoremap <C-j> 50jzz
 nnoremap <C-k> 50kzz
 nnoremap <C-y> <C-a>
+nnoremap <C-b> <C-^>
 
 nnoremap <n> nzz
 nnoremap <N> Nzz
@@ -43,6 +44,13 @@ nnoremap <N> Nzz
 " building/running
 nnoremap <leader>b :execute BuildCmd()<CR>
 nnoremap <leader>r :execute RunCmd()<CR>
+
+match ErrorMsg '\s\+$'
+
+augroup all_files
+	autocmd!
+	autocmd BufWritePre * :%s/\s\+$//ge
+augroup end
 
 augroup bindings_cpp
     autocmd!
@@ -55,8 +63,6 @@ augroup bindings_c
     autocmd BufNewFile,BufRead *.h,*.c :compiler gcc
     autocmd BufNewFile,BufRead *.h,*.c,*.y,*.l setlocal equalprg=clang-format\ -style=file
 
-    autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
-    autocmd BufNewFile,BufRead *.h nnoremap <buffer> \extern :r ~/.vim/snippets/c/extern_c.c<CR>
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \doc :r ~/.vim/snippets/c/doc_file.c<CR>
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \fdoc :r ~/.vim/snippets/c/doc_func.c<CR>
     autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>s :e %:r.h<CR>
@@ -77,12 +83,6 @@ augroup bindings_rust
 autocmd!
     autocmd BufNewFile,BufRead *.h,*.c :compiler cargo
     autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
-
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \default :r ~/.vim/snippets/rust/default.rs<CR>/T<CR>ciw
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \display :r ~/.vim/snippets/rust/display.rs<CR>/T<CR>ciw
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \ord :r ~/.vim/snippets/rust/ord.rs<CR>/T<CR>ciw
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \error :r ~/.vim/snippets/rust/error.rs<CR>/{<CR>o
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \fromerror :r ~/.vim/snippets/rust/from_error.rs<CR>f<ci<
 augroup end
 
 augroup bindings_elm
