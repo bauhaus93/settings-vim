@@ -1,5 +1,6 @@
 syntax on
 colorscheme desert
+set nocompatible
 set number relativenumber
 set nu rnu
 set exrc
@@ -12,8 +13,9 @@ set smartindent
 set noexpandtab
 set autowrite
 set laststatus=2
+set wildmenu
 set path=**/**
-set path=**
+set path+=**
 set wildignore+=**/__pycache__/**
 set wildignore+=**/build/**
 set wildignore+=**/env/**
@@ -40,25 +42,12 @@ nnoremap <C-j> 50jzz
 nnoremap <C-k> 50kzz
 nnoremap <C-y> <C-a>
 
-" folds
-nnoremap <leader>z zfa}<CR>
+nnoremap <n> nzz
+nnoremap <N> Nzz
 
-" tabs
-nnoremap <leader>t :tabn<CR>
-
-" session
-nnoremap <leader>ws :mksession! .session.vim<CR>
-nnoremap <leader>wl :source .session.vim<CR>
-
-" building
-nnoremap <leader>b :make<CR>
-nnoremap <leader>r ma :execute RunCmd()<CR>
-
-augroup group_all
-    autocmd!
-    autocmd BufNewFile,BufRead *.* let &l:makeprg = GetBuildCmd()
-augroup end
-
+" building/running
+nnoremap <leader>b :execute BuildCmd()<CR>
+nnoremap <leader>r :execute RunCmd()<CR>
 
 augroup bindings_cpp
     autocmd!
