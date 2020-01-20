@@ -36,21 +36,17 @@ nnoremap <leader>f m'gg=G''k<CR>
 nnoremap <C-j> 50jzz
 nnoremap <C-k> 50kzz
 nnoremap <C-y> <C-a>
-nnoremap <C-b> <C-^>
+nnoremap <C-h> :bprev<CR>
+nnoremap <C-l> :bnext<CR>
 
 nnoremap <n> nzz
 nnoremap <N> Nzz
 
 " building/running
-nnoremap <leader>b :execute BuildCmd()<CR>
-nnoremap <leader>r :execute RunCmd()<CR>
+nnoremap <leader>b mo<CR>:execute BuildCmd()<CR>'ok<CR>
+nnoremap <leader>r mo<CR>:execute RunCmw()<CR>'ok<CR>
 
 match ErrorMsg '\s\+$'
-
-augroup all_files
-	autocmd!
-	autocmd BufWritePre * :%s/\s\+$//ge
-augroup end
 
 augroup bindings_cpp
     autocmd!
