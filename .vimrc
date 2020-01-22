@@ -44,7 +44,7 @@ nnoremap <N> Nzz
 
 " building/running
 nnoremap <leader>b mo<CR>:execute BuildCmd()<CR>'ok<CR>
-nnoremap <leader>r mo<CR>:execute RunCmw()<CR>'ok<CR>
+nnoremap <leader>r mo<CR>:execute RunCmd()<CR>'ok<CR>
 
 match ErrorMsg '\s\+$'
 
@@ -77,7 +77,7 @@ augroup end
 
 augroup bindings_rust
 autocmd!
-    autocmd BufNewFile,BufRead *.h,*.c :compiler cargo
+    autocmd BufNewFile,BufRead *.rs :compiler cargo
     autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
 augroup end
 
