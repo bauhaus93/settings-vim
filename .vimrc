@@ -1,5 +1,6 @@
 syntax on
 colorscheme desert
+set nocompatible
 set number relativenumber
 set nu rnu
 set exrc
@@ -11,7 +12,10 @@ set autoindent
 set smartindent
 set noexpandtab
 set autowrite
-set path=**
+set laststatus=2
+set wildmenu
+set path=**/**3
+set path+=**
 set wildignore+=**/__pycache__/**
 set wildignore+=**/build/**
 set wildignore+=**/env/**
@@ -20,39 +24,29 @@ set clipboard=unnamedplus
 set ssop-=options
 set ssop-=folds
 set laststatus=2
+set statusline=%(%t%m%r%)%{GetGitBranch()}%=[%l/%L]
 let mapleader=","
 let g:netrw_liststyle=3
 let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_winsize=20
 
 nnoremap <leader>f m'gg=G''k<CR>
-nnoremap <leader>n :bnext<CR>
-nnoremap <leader>m :bprevious<CR>
-nnoremap <leader>o :only<CR>
-nnoremap <leader>d :vspl %<CR>
-nnoremap <leader>ym yyma<CR>
 
 nnoremap <C-j> 50jzz
 nnoremap <C-k> 50kzz
+nnoremap <C-y> <C-a>
+nnoremap <C-h> :bprev<CR>
+nnoremap <C-l> :bnext<CR>
 
-" folds
-nnoremap <leader>z zfa}<CR>
+nnoremap <n> nzz
+nnoremap <N> Nzz
 
-" tabs
-nnoremap <leader>t :tabn<CR>
+" building/running
+nnoremap <leader>b mo<CR>:execute BuildCmd()<CR>'ok<CR>
+nnoremap <leader>r mo<CR>:execute RunCmd()<CR>'ok<CR>
 
-" session
-nnoremap <leader>ws :mksession! .session.vim<CR>
-nnoremap <leader>wl :source .session.vim<CR>
-
-" building
-nnoremap <leader>b :make<CR>
-nnoremap <leader>r ma :execute RunCmd()<CR>
-
-augroup group_all
-    autocmd!
-    autocmd BufNewFile,BufRead *.* let &l:makeprg = GetBuildCmd()
-augroup end
-
+match ErrorMsg '\s\+$'
 
 augroup bindings_cpp
     autocmd!
@@ -65,8 +59,6 @@ augroup bindings_c
     autocmd BufNewFile,BufRead *.h,*.c :compiler gcc
     autocmd BufNewFile,BufRead *.h,*.c,*.y,*.l setlocal equalprg=clang-format\ -style=file
 
-    autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \guard :0r ~/.vim/snippets/c/guard.c<CR>
-    autocmd BufNewFile,BufRead *.h nnoremap <buffer> \extern :r ~/.vim/snippets/c/extern_c.c<CR>
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \doc :r ~/.vim/snippets/c/doc_file.c<CR>
     autocmd BufNewFile,BufRead *.h,*.c nnoremap <buffer> \fdoc :r ~/.vim/snippets/c/doc_func.c<CR>
     autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>s :e %:r.h<CR>
@@ -85,14 +77,8 @@ augroup end
 
 augroup bindings_rust
 autocmd!
-    autocmd BufNewFile,BufRead *.h,*.c :compiler cargo
+    autocmd BufNewFile,BufRead *.rs :compiler cargo
     autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
-
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \default :r ~/.vim/snippets/rust/default.rs<CR>/T<CR>ciw
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \display :r ~/.vim/snippets/rust/display.rs<CR>/T<CR>ciw
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \ord :r ~/.vim/snippets/rust/ord.rs<CR>/T<CR>ciw
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \error :r ~/.vim/snippets/rust/error.rs<CR>/{<CR>o
-    autocmd BufNewFile,BufRead *.rs nnoremap <buffer> \fromerror :r ~/.vim/snippets/rust/from_error.rs<CR>f<ci<
 augroup end
 
 augroup bindings_elm
@@ -105,4 +91,9 @@ augroup end
 augroup bindings_yaml
 	autocmd!
 	autocmd BufNewFile,BufRead *.yml,*.yaml set expandtab
+augroup end
+
+augroup bindings_tex
+	autocmd!
+	autocmd BufNewFile,BufRead *.tex nnoremap <leader>i i\begin{itemize}<Esc>yyplciwend<ESC>O<TAB>\item<Space>
 augroup end
