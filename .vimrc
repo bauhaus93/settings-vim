@@ -41,7 +41,7 @@ match ErrorMsg '\s\+$'
 nnoremap <leader>f m'gg=G''k<CR>
 
 " ag/fzf bindings
-nnoremap <leader>fc "ayiw :Ag<C-r>a<CR>
+nnoremap <leader>fc "ayiw :Ag <C-r>a<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fw :Ag<CR>
 
