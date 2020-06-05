@@ -1,9 +1,0 @@
-/**                                                                                                                               
- * @brief
- *
- * @pre
- *
- * @param
- *
- * @retval
- */
