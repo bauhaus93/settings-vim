@@ -30,12 +30,19 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'junegunn/fzf.vim'
+Plugin 'tikhomirov/vim-glsl'
 call vundle#end()
 
 filetype plugin indent on
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 match ErrorMsg '\s\+$'
+
+"center on g/G
+nnoremap gg ggzz
+nnoremap G Gzz
+" nnoremap j jzz
+" nnoremap k kzz
 
 " format binding
 nnoremap <leader>f m'gg=G''k<CR>
@@ -45,13 +52,16 @@ nnoremap <leader>fc "ayiw :Ag <C-r>a<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fw :Ag<CR>
 
+" tag bindings
+nnoremap <leader>d "ayiw :tag <C-r>a<CR>
+
 " tab/buffer navigation
 nnoremap <C-h> :tabprev<CR>
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-j> :bprev<CR>
 nnoremap <C-k> :bnext<CR>
 
-" tabs/spaces replacement (assumes 4 spaces used for tabs)
+" tabs/spaces replacement
 nnoremap <leader>ts :set expandtab<CR>:%retab!<CR>
 nnoremap <leader>tt :set noexpandtab<CR>:%retab!<CR>
 
@@ -59,6 +69,7 @@ augroup bindings_format
 	autocmd!
 	autocmd BufNewFile,BufRead *.hpp,*.cpp,*.h,*.c,*.y,*.l setlocal equalprg=clang-format\ -style=file
 	autocmd BufNewFile,BufRead CMakeLists.txt,*.cmake setlocal equalprg=cmake-format\ -\ \|\ unexpand\ \|\ sponge
+	autocmd BufNewFile,BufRead *.py setlocal equalprg=black\ -q\ \ -
 	autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
 	autocmd BufNewFile,BufRead *.elm setlocal equalprg=elm-format\ --stdin
 augroup end
@@ -66,9 +77,13 @@ augroup end
 augroup bindings_switch_hdr_src
 	autocmd!
 	autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>s :e %:r.h<CR>
+	autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>s :e %:r.c<CR>
 	autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>v :vspl %:r.h<CR>
+	autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>v :vspl %:r.c<CR>
 	autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
-	autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>v :vspl %:r.hpp<CR>
+	autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>v :vspl %:r.cpp<CR>
+	autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
+	autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>v :vspl %:r.cpp<CR>
 augroup end
 
 augroup other_stuff
