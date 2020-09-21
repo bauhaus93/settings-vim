@@ -4,7 +4,7 @@ colorscheme desert
 set nocompatible exrc secure
 set number relativenumber cursorline
 set shiftwidth=4 tabstop=4 autoindent smartindent noexpandtab
-set autowriteall hidden
+set autowriteall hidden noswapfile
 set laststatus=2
 set wildmenu
 set clipboard=unnamedplus
@@ -31,8 +31,6 @@ match ErrorMsg '\s\+$'
 "center on g/G
 nnoremap gg ggzz
 nnoremap G Gzz
-" nnoremap j jzz
-" nnoremap k kzz
 
 " format binding
 nnoremap <leader>f m'gg=G''k<CR>
@@ -43,6 +41,7 @@ nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fw :Ag<CR>
 
 " ctags bindings
+nnoremap <silent> <leader>t :execute system("ctags -R", "$CWD")<CR>:echom "Updated tags"<CR>
 nnoremap <leader>d <C-]>
 
 " tab/buffer navigation
@@ -50,10 +49,6 @@ nnoremap <silent> <C-h> :tabprev<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
-
-" tabs/spaces replacement
-nnoremap <leader>ts :set expandtab<CR>:%retab!<CR>
-nnoremap <leader>tt :set noexpandtab<CR>:%retab!<CR>
 
 augroup bindings_format
 	autocmd!
