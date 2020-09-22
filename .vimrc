@@ -1,18 +1,10 @@
 syntax on
-filetype off
+filetype plugin indent on
 colorscheme desert
-set nocompatible
-set number relativenumber
-set nu rnu
-set exrc
-set secure
-set cursorline
-set shiftwidth=4
-set tabstop=4
-set autoindent
-set smartindent
-set noexpandtab
-set autowrite
+set nocompatible exrc secure
+set number relativenumber cursorline
+set shiftwidth=4 tabstop=4 autoindent smartindent noexpandtab
+set autowriteall hidden noswapfile
 set laststatus=2
 set wildmenu
 set clipboard=unnamedplus
@@ -33,16 +25,12 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'tikhomirov/vim-glsl'
 call vundle#end()
 
-filetype plugin indent on
-
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 match ErrorMsg '\s\+$'
 
 "center on g/G
 nnoremap gg ggzz
 nnoremap G Gzz
-" nnoremap j jzz
-" nnoremap k kzz
 
 " format binding
 nnoremap <leader>f m'gg=G''k<CR>
@@ -52,22 +40,19 @@ nnoremap <leader>fc "ayiw :Ag <C-r>a<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fw :Ag<CR>
 
-" tag bindings
-nnoremap <leader>d "ayiw :tag <C-r>a<CR>
+" ctags bindings
+nnoremap <silent> <leader>t :execute system("ctags -R", "$CWD")<CR>:echom "Updated tags"<CR>
+nnoremap <leader>d <C-]>
 
 " tab/buffer navigation
-nnoremap <C-h> :tabprev<CR>
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-j> :bprev<CR>
-nnoremap <C-k> :bnext<CR>
-
-" tabs/spaces replacement
-nnoremap <leader>ts :set expandtab<CR>:%retab!<CR>
-nnoremap <leader>tt :set noexpandtab<CR>:%retab!<CR>
+nnoremap <silent> <C-h> :tabprev<CR>
+nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
 
 augroup bindings_format
 	autocmd!
-	autocmd BufNewFile,BufRead *.hpp,*.cpp,*.h,*.c,*.y,*.l setlocal equalprg=clang-format\ -style=file
+	autocmd BufNewFile,BufRead *.hpp,*.cpp,*.h,*.c,*.y,*.l,*.cs setlocal equalprg=clang-format\ -style=file
 	autocmd BufNewFile,BufRead CMakeLists.txt,*.cmake setlocal equalprg=cmake-format\ -\ \|\ unexpand\ \|\ sponge
 	autocmd BufNewFile,BufRead *.py setlocal equalprg=black\ -q\ \ -
 	autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
@@ -89,5 +74,4 @@ augroup end
 augroup other_stuff
 	autocmd!
 	autocmd BufNewFile,BufRead *.elm,*.yml,*.yaml,*.hs set expandtab
-	autocmd BufNewFile,BufRead *.elm set syntax=elm
 augroup end
