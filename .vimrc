@@ -23,7 +23,6 @@ if !filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
 	!git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 endif
 
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -39,17 +38,34 @@ match ErrorMsg '\s\+$'
 
 let g:ale_set_highlights = 0
 let g:ale_fix_on_save = 1
-let g:ale_linters = { 'c': ['cc'], 'python': ['pylint'], 'rust': ['rls'] }
-let g:ale_fixers = { 'python': ['black', 'isort'], 'c': ['clang-format'], 'cpp': ['clang-format'], 'rust': ['rustfmt'], 'cmake': ['cmake-format'] }
+let g:ale_linters = {
+			\'c': ['cc'],
+			\'cpp': ['cc'],
+			\'python': ['pylint'],
+			\'rust': ['rls'],
+			\'tex': ['lacheck'],
+			\}
+let g:ale_fixers = {
+			\'python': ['black', 'isort'],
+			\'c': ['clang-format'],
+			\'cpp': ['clang-format'],
+			\'rust': ['rustfmt'],
+			\'cmake': ['cmake-format'],
+			\'elm': ['elm-format'],
+			\'html': ['prettier'],
+			\'css': ['prettier'],
+			\'scss': ['prettier'],
+			\'json': ['prettier'],
+			\'markdown': ['prettier'],
+			\'yaml': ['prettier'],
+			\'tex': ['latexindent'],
+			\}
 
 nnoremap <silent><leader>q :lop<CR>
 
 "center on g/G
 nnoremap gg ggzz
 nnoremap G Gzz
-
-" format binding
-nnoremap <leader>f m'gg=G''k<CR>
 
 " ag/fzf bindings
 nnoremap <leader>fc "ayiw :Ag <C-r>a<CR>
@@ -66,25 +82,12 @@ nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 
-augroup bindings_format
-	autocmd!
-	autocmd BufNewFile,BufRead *.hpp,*.cpp,*.h,*.c,*.y,*.l,*.cs setlocal equalprg=clang-format\ -style=file
-	autocmd BufNewFile,BufRead CMakeLists.txt,*.cmake setlocal equalprg=cmake-format\ -\ \|\ unexpand\ \|\ sponge
-	autocmd BufNewFile,BufRead *.py setlocal equalprg=black\ -q\ \ -
-	autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt\ --edition\ 2018
-	autocmd BufNewFile,BufRead *.elm setlocal equalprg=elm-format\ --stdin
-augroup end
-
 augroup bindings_switch_hdr_src
 	autocmd!
 	autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>s :e %:r.h<CR>
 	autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>s :e %:r.c<CR>
-	autocmd BufNewFile,BufRead *.c nnoremap <buffer> <leader>v :vspl %:r.h<CR>
-	autocmd BufNewFile,BufRead *.h nnoremap <buffer> <leader>v :vspl %:r.c<CR>
 	autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
-	autocmd BufNewFile,BufRead *.cpp nnoremap <buffer> <leader>v :vspl %:r.cpp<CR>
 	autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>s :e %:r.hpp<CR>
-	autocmd BufNewFile,BufRead *.hpp nnoremap <buffer> <leader>v :vspl %:r.cpp<CR>
 augroup end
 
 augroup other_stuff
