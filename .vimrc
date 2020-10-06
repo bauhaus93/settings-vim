@@ -18,15 +18,31 @@ let g:netrw_browse_split=4
 let g:netrw_winsize=20
 
 " vundle
+
+if !filereadable(expand("~/.vim/bundle/Vundle.vim/README.md"))
+	!git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+endif
+
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'dense-analysis/ale'
 call vundle#end()
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 match ErrorMsg '\s\+$'
+
+"ale
+
+let g:ale_set_highlights = 0
+let g:ale_fix_on_save = 1
+let g:ale_linters = { 'c': ['cc'], 'python': ['pylint'], 'rust': ['rls'] }
+let g:ale_fixers = { 'python': ['black', 'isort'], 'c': ['clang-format'], 'cpp': ['clang-format'], 'rust': ['rustfmt'], 'cmake': ['cmake-format'] }
+
+nnoremap <silent><leader>q :lop<CR>
 
 "center on g/G
 nnoremap gg ggzz
@@ -55,7 +71,7 @@ augroup bindings_format
 	autocmd BufNewFile,BufRead *.hpp,*.cpp,*.h,*.c,*.y,*.l,*.cs setlocal equalprg=clang-format\ -style=file
 	autocmd BufNewFile,BufRead CMakeLists.txt,*.cmake setlocal equalprg=cmake-format\ -\ \|\ unexpand\ \|\ sponge
 	autocmd BufNewFile,BufRead *.py setlocal equalprg=black\ -q\ \ -
-	autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt
+	autocmd BufNewFile,BufRead *.rs setlocal equalprg=rustfmt\ --edition\ 2018
 	autocmd BufNewFile,BufRead *.elm setlocal equalprg=elm-format\ --stdin
 augroup end
 
