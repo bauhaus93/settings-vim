@@ -50,7 +50,7 @@ let g:ale_fixers = {
 			\'c': ['clang-format'],
 			\'cpp': ['clang-format'],
 			\'rust': ['rustfmt'],
-			\'cmake': ['cmake-format'],
+			\'cmake': ['cmakeformat'],
 			\'elm': ['elm-format'],
 			\'html': ['prettier'],
 			\'css': ['prettier'],
