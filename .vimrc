@@ -27,7 +27,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'junegunn/fzf.vim'
-Plugin 'tikhomirov/vim-glsl'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'dense-analysis/ale'
 call vundle#end()
 
