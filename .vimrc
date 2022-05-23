@@ -1,6 +1,6 @@
 syntax on
 filetype plugin indent on
-colorscheme desert
+colorscheme default
 set nocompatible exrc secure
 set number relativenumber cursorline
 set shiftwidth=4 tabstop=4 autoindent smartindent noexpandtab
