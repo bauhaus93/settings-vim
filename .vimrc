@@ -1,6 +1,8 @@
 syntax on
 filetype plugin indent on
-colorscheme default
+colorscheme industry
+hi Normal guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
 set nocompatible exrc secure
 set number relativenumber cursorline
 set shiftwidth=4 tabstop=4 autoindent smartindent noexpandtab
@@ -11,7 +13,7 @@ set clipboard=unnamedplus
 set ssop-=options
 set ssop-=folds
 set laststatus=2
-let mapleader=","
+let mapleader=" "
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_browse_split=4
@@ -29,6 +31,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'dense-analysis/ale'
+Plugin 'alx741/vim-hindent'
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -38,13 +43,17 @@ match ErrorMsg '\s\+$'
 
 let g:ale_set_highlights = 0
 let g:ale_fix_on_save = 1
+let g:ale_rust_rustfmt_options = "--edition 2021"
 let g:ale_linters = {
 			\'c': ['cc'],
 			\'cpp': ['cc'],
 			\'python': ['pylint'],
 			\'rust': ['rls'],
 			\'tex': ['lacheck'],
+			\'haskell': ['hls'],
+			\'perl': ['perlcritic'],
 			\}
+
 let g:ale_fixers = {
 			\'python': ['black', 'isort'],
 			\'c': ['clang-format'],
@@ -57,15 +66,26 @@ let g:ale_fixers = {
 			\'scss': ['prettier'],
 			\'json': ['prettier'],
 			\'markdown': ['prettier'],
+			\'perl': ['perltidy'],
 			\'yaml': ['prettier'],
 			\'tex': ['latexindent'],
+			\'haskell': ['brittany'],
+			\'cs': ['dotnet-format', 'uncrustify'],
 			\}
+
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_keys = 'neiotsraluypfwkmvcxjhkgdb'
 
 nnoremap <silent><leader>q :lop<CR>
 
 "center on g/G
 nnoremap gg ggzz
 nnoremap G Gzz
+
+" easymotion
+nnoremap <leader>s <Plug>(easymotion-s2)
+nnoremap <leader>l <Plug>(easymotion-line)
 
 " ag/fzf bindings
 nnoremap <leader>fc "ayiw :Ag <C-r>a<CR>
